@@ -143,7 +143,7 @@ namespace HomeTelegramBot.Models
 
         private string ResolveCommandHandler(string command)
         {
-            return Configurator.GetKeyByValue(command.ToLower()).FirstOrDefault();
+            return Configurator.GetKeyByValue(command.ToLower(), Configurator.GetBotCommands()).FirstOrDefault();
         }
 
         private string RetrieveCommand(string text)

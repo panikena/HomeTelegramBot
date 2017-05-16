@@ -27,6 +27,11 @@ namespace HomeTelegramBot.Controllers
             _bot.SendTextMessageAsync(message.Chat.Id, "The weather will be great tomorrow!");
         }
 
+        public void CurrentWeather([FromBody] Message message)
+        {
+            _bot.SendTextMessageAsync(message.Chat.Id, "The weather will be great tomorrow!");
+        }
+
         public void Info([FromBody] Message message)
         {
             _bot.SendTextMessageAsync(message.Chat.Id, Properties.Resources.InfoText + Configurator.GetAppSetting("Version"));
