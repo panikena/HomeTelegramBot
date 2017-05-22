@@ -117,20 +117,66 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AfternoonDefinition" xml:space="preserve">
+    <value>afternoon,midday</value>
+  </data>
   <data name="AvailableCommands" xml:space="preserve">
     <value>/help - available commands
 /info - info about this bot
 /weather - gives you a weather forecast
 /switch - change state of objects at home</value>
   </data>
+  <data name="DefaultWeatherCity" xml:space="preserve">
+    <value>Kharkiv,ua</value>
+  </data>
   <data name="ErrorMessage" xml:space="preserve">
     <value>Cannot process this command, please see list of available commands using /help</value>
+  </data>
+  <data name="EveningDefinition" xml:space="preserve">
+    <value>evening</value>
+  </data>
+  <data name="Humidity" xml:space="preserve">
+    <value>Humidity</value>
   </data>
   <data name="InfoText" xml:space="preserve">
     <value>Hello! I am Home Automation Telegram Bot. I can assist you in controlling your house and getting useful information. My version is </value>
   </data>
+  <data name="InPreposition" xml:space="preserve">
+    <value>in</value>
+  </data>
+  <data name="MetersPerSecond" xml:space="preserve">
+    <value>m/s</value>
+  </data>
+  <data name="MidnightDefinition" xml:space="preserve">
+    <value>night,midnight</value>
+  </data>
+  <data name="MorningDefinition" xml:space="preserve">
+    <value>morning</value>
+  </data>
+  <data name="NowDefinition" xml:space="preserve">
+    <value>now</value>
+  </data>
+  <data name="Pressure" xml:space="preserve">
+    <value>Pressure</value>
+  </data>
+  <data name="PressureUnits" xml:space="preserve">
+    <value>hPa</value>
+  </data>
   <data name="SwitchDesc" xml:space="preserve">
     <value>/switch command requires an object and an action.
 Example: /switch light off</value>
+  </data>
+  <data name="Temperature" xml:space="preserve">
+    <value>Temperature</value>
+  </data>
+  <data name="TomorrowDefinition" xml:space="preserve">
+    <value>tomorrow</value>
+  </data>
+  <data name="WeatherDesc" xml:space="preserve">
+    <value>/weather command requires day
+Example: /weather tomorrow</value>
+  </data>
+  <data name="Wind" xml:space="preserve">
+    <value>Wind</value>
   </data>
 </root>

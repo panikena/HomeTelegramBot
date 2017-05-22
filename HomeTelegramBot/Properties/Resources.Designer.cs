@@ -61,6 +61,15 @@ namespace HomeTelegramBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to afternoon,midday.
+        /// </summary>
+        internal static string AfternoonDefinition {
+            get {
+                return ResourceManager.GetString("AfternoonDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /help - available commands
         ////info - info about this bot
         ////weather - gives you a weather forecast
@@ -69,6 +78,15 @@ namespace HomeTelegramBot.Properties {
         internal static string AvailableCommands {
             get {
                 return ResourceManager.GetString("AvailableCommands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kharkiv,ua.
+        /// </summary>
+        internal static string DefaultWeatherCity {
+            get {
+                return ResourceManager.GetString("DefaultWeatherCity", resourceCulture);
             }
         }
         
@@ -82,11 +100,92 @@ namespace HomeTelegramBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to evening.
+        /// </summary>
+        internal static string EveningDefinition {
+            get {
+                return ResourceManager.GetString("EveningDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Humidity.
+        /// </summary>
+        internal static string Humidity {
+            get {
+                return ResourceManager.GetString("Humidity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello! I am Home Automation Telegram Bot. I can assist you in controlling your house and getting useful information. My version is .
         /// </summary>
         internal static string InfoText {
             get {
                 return ResourceManager.GetString("InfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to in.
+        /// </summary>
+        internal static string InPreposition {
+            get {
+                return ResourceManager.GetString("InPreposition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m/s.
+        /// </summary>
+        internal static string MetersPerSecond {
+            get {
+                return ResourceManager.GetString("MetersPerSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to night,midnight.
+        /// </summary>
+        internal static string MidnightDefinition {
+            get {
+                return ResourceManager.GetString("MidnightDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to morning.
+        /// </summary>
+        internal static string MorningDefinition {
+            get {
+                return ResourceManager.GetString("MorningDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to now.
+        /// </summary>
+        internal static string NowDefinition {
+            get {
+                return ResourceManager.GetString("NowDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pressure.
+        /// </summary>
+        internal static string Pressure {
+            get {
+                return ResourceManager.GetString("Pressure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hPa.
+        /// </summary>
+        internal static string PressureUnits {
+            get {
+                return ResourceManager.GetString("PressureUnits", resourceCulture);
             }
         }
         
@@ -97,6 +196,43 @@ namespace HomeTelegramBot.Properties {
         internal static string SwitchDesc {
             get {
                 return ResourceManager.GetString("SwitchDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Temperature.
+        /// </summary>
+        internal static string Temperature {
+            get {
+                return ResourceManager.GetString("Temperature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tomorrow.
+        /// </summary>
+        internal static string TomorrowDefinition {
+            get {
+                return ResourceManager.GetString("TomorrowDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /weather command requires day
+        ///Example: /weather tomorrow.
+        /// </summary>
+        internal static string WeatherDesc {
+            get {
+                return ResourceManager.GetString("WeatherDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wind.
+        /// </summary>
+        internal static string Wind {
+            get {
+                return ResourceManager.GetString("Wind", resourceCulture);
             }
         }
     }

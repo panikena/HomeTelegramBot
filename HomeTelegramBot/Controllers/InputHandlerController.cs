@@ -9,7 +9,16 @@ namespace HomeTelegramBot.Controllers
 {
     public class  InputHandlerController : ApiController
     {
-        private Bot _bot = Bot.Get();
+        private static  Bot _bot = Bot.Get();
+        private static HttpClient _httpClient = new HttpClient();
+
+        public InputHandlerController()
+        {
+            if (_httpClient.BaseAddress == null)
+            {
+                _httpClient.BaseAddress = new System.Uri(Configurator.GetAppSetting("HostAddress"));
+            }   
+        }
 
         [HttpGet]
         public HttpResponseMessage Help()
@@ -22,14 +31,21 @@ namespace HomeTelegramBot.Controllers
             _bot.SendTextMessageAsync(message.Chat.Id, Properties.Resources.AvailableCommands);
         }
         
-        public void WeatherForecast([FromBody] Message message)
-        {
-            _bot.SendTextMessageAsync(message.Chat.Id, "The weather will be great tomorrow!");
+        public void Weather([FromBody] Message message)
+        { 
+            HttpResponseMessage result;
+            string responseMessage = "";
+
+            result = _httpClient.GetAsync("api/Weather/GetWeather?commandMessage=" + message.Text).Result;
+
+            responseMessage = result.Content.ReadAsStringAsync().Result;
+          
+            _bot.SendTextMessageAsync(message.Chat.Id, responseMessage);
         }
 
         public void Info([FromBody] Message message)
         {
-            _bot.SendTextMessageAsync(message.Chat.Id, Properties.Resources.InfoText + Configurator.GetAppSetting("Version"));
+            _bot.SendTextMessageAsync(message.Chat.Id, Properties.Resources.InfoText + Configurator.BotVersion);
         }
 
         public void Switch([FromBody] Message message)
@@ -52,7 +68,7 @@ namespace HomeTelegramBot.Controllers
 
         public void Start([FromBody] Message message)
         {
-            _bot.SendTextMessageAsync(message.Chat.Id, Properties.Resources.InfoText + Configurator.GetAppSetting("Version") + "\n" + Properties.Resources.AvailableCommands);
+            _bot.SendTextMessageAsync(message.Chat.Id, Properties.Resources.InfoText + Configurator.BotVersion + "\n" + Properties.Resources.AvailableCommands);
         }
 
     }

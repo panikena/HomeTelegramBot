@@ -1,14 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Configuration;
+using System.Web.Hosting;
+using System.Xml.Linq;
 
 namespace HomeTelegramBot.Helpers
 {
     public static class Configurator
     {
+        public static Dictionary<string, string> BotSettings = GetBotConfigKeyValuePairs("settings");
+        public static Dictionary<string, string> BotCommands = GetBotConfigKeyValuePairs("commands");
+        public static string BotVersion = GetBotConfigNode("version").Attribute("value").Value;
+
         public static string GetTelegramAPIKey()
         {
-            return GetAppSetting("TelegramAPIKey");
+            return BotSettings["TelegramAPIKey"];
         }
 
         public static string GetAppSetting(string key)
@@ -16,35 +22,45 @@ namespace HomeTelegramBot.Helpers
             return WebConfigurationManager.AppSettings[key];
         }
 
-        //public static Configuration GetBotConfiguration()
-        //{
-        //    var configFile = new FileInfo("Bot.config");
-        //    var vdm = new VirtualDirectoryMapping(configFile.DirectoryName, true, configFile.Name);
-        //    var wcfm = new WebConfigurationFileMap();
-        //    wcfm.VirtualDirectories.Add("/", vdm);
-        //    return WebConfigurationManager.OpenMappedWebConfiguration(wcfm, "/");
-        //}
+        #region Bot.config
 
-        public static IEnumerable<string> GetKeyByValue(string value)
+        private static XElement GetBotConfig()
+        {
+            var document = XDocument.Load(HostingEnvironment.MapPath(@"/Bot.config"));
+
+            return document.Root;
+        }
+
+        private static XElement GetBotConfigNode(string nodeName)
+        {
+            return GetBotConfig().Element(nodeName);
+        }
+
+        private static Dictionary<string, string> GetBotConfigKeyValuePairs(string nodeName)
+        {
+            var commands = GetBotConfigNode(nodeName).Elements().ToDictionary(x => x.Attribute("key").Value, x => x.Attribute("value").Value);
+
+            return commands;
+        }
+
+        #endregion Bot.config
+
+        public static IEnumerable<string> GetKeyByValue(string value, Dictionary<string, string> data)
         {
             value = value.Trim(new char[] { '/' });
             List<string> keysToReturn = new List<string>();
 
-            foreach (var key in WebConfigurationManager.AppSettings)
+            foreach (var kvp in data)
             {
-                var keyString = key.ToString();
-
-                var values = WebConfigurationManager.AppSettings.GetValues(keyString);
+                var values = kvp.Value.Split();
 
                 if (values.Any(x => x.Contains(value)))
                 {
-                    keysToReturn.Add(keyString);
+                    keysToReturn.Add(kvp.Key);
                 }   
             }
 
             return keysToReturn;
         }
-
-
     }
 }

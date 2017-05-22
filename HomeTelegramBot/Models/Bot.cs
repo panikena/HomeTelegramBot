@@ -26,7 +26,6 @@ namespace HomeTelegramBot.Models
 
         private IUserRepository _userRepository;
         private IList<User> _authorizationRequests;
-        //    private ILog _log = LogManager.GetLogger(typeof(Bot));
 
         private string TelegramAPIKey = Configurator.GetTelegramAPIKey();
 
@@ -54,25 +53,6 @@ namespace HomeTelegramBot.Models
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(Configurator.GetAppSetting("HostAddress"));
         }
-
-        private string GetHostName()
-        {
-            var appPath = string.Empty;
-            var context = HttpContext.Current;
-            if (context != null)
-            {
-                appPath = string.Format("{0}{1}",
-                        context.Request.Url.Host,
-                        context.Request.Url.Port == 80
-                        ? string.Empty : ":" + context.Request.Url.Port);
-            }
-            if (!appPath.EndsWith("/"))
-            {
-                appPath += "/";
-            }
-            return appPath; 
-        }
-
 
         public static Bot Get()
         {
@@ -143,7 +123,7 @@ namespace HomeTelegramBot.Models
 
         private string ResolveCommandHandler(string command)
         {
-            return Configurator.GetKeyByValue(command.ToLower()).FirstOrDefault();
+            return Configurator.GetKeyByValue(command.ToLower(), Configurator.BotCommands).FirstOrDefault();
         }
 
         private string RetrieveCommand(string text)
@@ -162,8 +142,6 @@ namespace HomeTelegramBot.Models
 
         private void HandleTextRequest(Message message)
         {
-
-
             var someAction = "action";
 
             SendMessageToHandler(message, someAction);
@@ -207,12 +185,6 @@ namespace HomeTelegramBot.Models
 
         private async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
         {
-            //Initialise base address with current server address
-            if (_httpClient.BaseAddress == null)
-            {
-                _httpClient.BaseAddress = new Uri(GetHostName());
-            }
-
             var user = messageEventArgs.Message.From;
 
             var message = messageEventArgs.Message;
