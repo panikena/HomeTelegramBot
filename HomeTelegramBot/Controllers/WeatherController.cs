@@ -1,44 +1,25 @@
-﻿using HomeTelegramBot.Helpers;
-using HomeTelegramBot.Models.Weather;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using HomeTelegramBot.Services.Interfaces;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Xml;
 
 namespace HomeTelegramBot.Controllers
 {
     public class WeatherController : ApiController
     {
-        private string currentWeatherAddress = "http://api.openweathermap.org/data/2.5/weather?q=Kharkiv,ua&mode=xml&units=metric&appid=" + Configurator.BotSettings["WeatherAPIKey"];
-        private string forecastAddress = "http://api.openweathermap.org/data/2.5/forecast?q=Kharkiv,ua&mode=xml&units=metric&appid=" + Configurator.BotSettings["WeatherAPIKey"];
+        private readonly IWeatherService _weatherService;
 
-        public HttpResponseMessage GetCurrentWeather(int chatId)
+        public WeatherController(IWeatherService weatherService)
         {
-            var currentWeather = new CurrentWeather();
-
-            var request = WebRequest.Create(currentWeatherAddress);
-            var response = request.GetResponse();
-            var xmlDoc = new XmlDocument();
-            xmlDoc.Load(response.GetResponseStream());
-
-            return Request.CreateResponse(HttpStatusCode.OK, currentWeather);
+            _weatherService = weatherService;
         }
-
-        public HttpResponseMessage GetWeatherForecast(int chatId)
+        
+        public HttpResponseMessage GetWeather(string commandMessage)
         {
-            var weatherForecast = new List<WeatherForecast>();
-
-            var request = WebRequest.Create(forecastAddress);
-            var response = request.GetResponse();
-            var xmlDoc = new XmlDocument();
-            xmlDoc.Load(response.GetResponseStream());
-
-            
-
-            return Request.CreateResponse(HttpStatusCode.OK, weatherForecast);
+            //http://stackoverflow.com/questions/11581697/is-there-a-way-to-force-asp-net-web-api-to-return-plain-text
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+            response.Content = new StringContent(_weatherService.GetWeatherMessage(commandMessage), System.Text.Encoding.UTF8, "text/plain");
+            return response;
         }
 
     }

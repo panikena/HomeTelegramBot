@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -28,10 +27,11 @@ namespace HomeTelegramBot.Models.Weather
             weatherForecast.From = DateTime.Parse(element.Attribute("from").Value, null, System.Globalization.DateTimeStyles.RoundtripKind);
             weatherForecast.To = DateTime.Parse(element.Attribute("to").Value, null, System.Globalization.DateTimeStyles.RoundtripKind);
 
-            var rainPrecipitation = element.Elements().SingleOrDefault(x => x.Name == "precipitation" && x.Attribute("type").Value == "rain")?.Attribute("value").Value;
+            //precipitation node can be empty
+            var rainPrecipitation = element.Elements().SingleOrDefault(x => x.Name == "precipitation" && x.Attribute("type")?.Value == "rain")?.Attribute("value").Value;
             weatherForecast.RainPrecipitation = double.Parse(rainPrecipitation != null ? rainPrecipitation : "0");
 
-            var snowPrecipitation = element.Elements().SingleOrDefault(x => x.Name == "precipitation" && x.Attribute("type").Value == "snow")?.Attribute("value").Value;
+            var snowPrecipitation = element.Elements().SingleOrDefault(x => x.Name == "precipitation" && x.Attribute("type")?.Value == "snow")?.Attribute("value").Value;
             weatherForecast.SnowPrecipitation = double.Parse(snowPrecipitation != null ? snowPrecipitation : "0");
 
             weatherForecast.WindAzimuth = double.Parse(element.Element("windDirection").Attribute("deg").Value);
@@ -42,7 +42,7 @@ namespace HomeTelegramBot.Models.Weather
             weatherForecast.MinTemperature = double.Parse(element.Element("temperature").Attribute("min").Value);
             weatherForecast.Pressure = double.Parse(element.Element("pressure").Attribute("value").Value);
             weatherForecast.Humidity = int.Parse(element.Element("humidity").Attribute("value").Value);
-            weatherForecast.Clouds = int.Parse(element.Element("clouds").Attribute("value").Value);
+            weatherForecast.Clouds = int.Parse(element.Element("clouds").Attribute("all").Value);
 
             return weatherForecast;
         }

@@ -8,13 +8,13 @@ namespace HomeTelegramBot.Helpers
 {
     public static class Configurator
     {
-        public static Dictionary<string, string> BotSettings = GetBotSettings();
-        public static Dictionary<string, string> BotCommands = GetBotCommands();
-
+        public static Dictionary<string, string> BotSettings = GetBotConfigKeyValuePairs("settings");
+        public static Dictionary<string, string> BotCommands = GetBotConfigKeyValuePairs("commands");
+        public static string BotVersion = GetBotConfigNode("version").Attribute("value").Value;
 
         public static string GetTelegramAPIKey()
         {
-            return BotSettings["APIKey"];
+            return BotSettings["TelegramAPIKey"];
         }
 
         public static string GetAppSetting(string key)
@@ -28,25 +28,19 @@ namespace HomeTelegramBot.Helpers
         {
             var document = XDocument.Load(HostingEnvironment.MapPath(@"/Bot.config"));
 
-            return document.Root.Element("configuration");
+            return document.Root;
         }
 
-        private static Dictionary<string, string> GetBotCommands()
+        private static XElement GetBotConfigNode(string nodeName)
         {
-            var config = GetBotConfig();
+            return GetBotConfig().Element(nodeName);
+        }
 
-            var commands = config.Element("commands").Elements().ToDictionary(x => x.Attribute("key").Value, x => x.Attribute("values").Value);
+        private static Dictionary<string, string> GetBotConfigKeyValuePairs(string nodeName)
+        {
+            var commands = GetBotConfigNode(nodeName).Elements().ToDictionary(x => x.Attribute("key").Value, x => x.Attribute("value").Value);
 
             return commands;
-        }
-
-        private static Dictionary<string, string> GetBotSettings()
-        {
-            var config = GetBotConfig();
-
-            var settings = config.Element("settings").Elements().ToDictionary(x => x.Attribute("key").Value, x => x.Attribute("values").Value);
-
-            return settings;
         }
 
         #endregion Bot.config
