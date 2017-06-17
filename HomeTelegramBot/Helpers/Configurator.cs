@@ -10,6 +10,8 @@ namespace HomeTelegramBot.Helpers
     {
         public static Dictionary<string, string> BotSettings = GetBotConfigKeyValuePairs("settings");
         public static Dictionary<string, string> BotCommands = GetBotConfigKeyValuePairs("commands");
+        public static Dictionary<string, string> Keywords = GetBotConfigKeyValuePairs("keywords");
+        public static Dictionary<string, string> Keyphrases = GetBotConfigKeyValuePairs("keyphrases");
         public static string BotVersion = GetBotConfigNode("version").Attribute("value").Value;
 
         public static string GetTelegramAPIKey()

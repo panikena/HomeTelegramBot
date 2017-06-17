@@ -139,7 +139,7 @@
     <value>Humidity</value>
   </data>
   <data name="InfoText" xml:space="preserve">
-    <value>Hello! I am Home Automation Telegram Bot. I can assist you in controlling your house and getting useful information. My version is </value>
+    <value>Hello, {0}! I am Home Automation Bot. I can assist you in controlling your house and getting useful information. Feel free to write me any time!</value>
   </data>
   <data name="InPreposition" xml:space="preserve">
     <value>in</value>
@@ -178,5 +178,14 @@ Example: /weather tomorrow</value>
   </data>
   <data name="Wind" xml:space="preserve">
     <value>Wind</value>
+  </data>
+  <data name="IAmFine" xml:space="preserve">
+    <value>I'm fine, thanks! Today is a good day to use Home Automation Bot.</value>
+  </data>
+  <data name="MyVersionIs" xml:space="preserve">
+    <value>My version is</value>
+  </data>
+  <data name="PleaseRepeat" xml:space="preserve">
+    <value>Sorry, I could not understand what you have just said. Please try other words or the comands that I know, To see them enter /help</value>
   </data>
 </root>

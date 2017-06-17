@@ -118,7 +118,16 @@ namespace HomeTelegramBot.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello! I am Home Automation Telegram Bot. I can assist you in controlling your house and getting useful information. My version is .
+        ///   Looks up a localized string similar to I&apos;m fine, thanks! Today is a good day to use Home Automation Bot..
+        /// </summary>
+        internal static string IAmFine {
+            get {
+                return ResourceManager.GetString("IAmFine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello, {0}! I am Home Automation Bot. I can assist you in controlling your house and getting useful information. Feel free to write me any time!.
         /// </summary>
         internal static string InfoText {
             get {
@@ -163,11 +172,29 @@ namespace HomeTelegramBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My version is.
+        /// </summary>
+        internal static string MyVersionIs {
+            get {
+                return ResourceManager.GetString("MyVersionIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to now.
         /// </summary>
         internal static string NowDefinition {
             get {
                 return ResourceManager.GetString("NowDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, I could not understand what you have just said. Please try other words or the comands that I know, To see them enter /help.
+        /// </summary>
+        internal static string PleaseRepeat {
+            get {
+                return ResourceManager.GetString("PleaseRepeat", resourceCulture);
             }
         }
         

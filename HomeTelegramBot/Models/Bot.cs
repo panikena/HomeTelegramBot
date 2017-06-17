@@ -1,6 +1,7 @@
 ﻿using HomeTelegramBot.DataAccess.Interfaces;
 using HomeTelegramBot.DataAccess.Repositories;
 using HomeTelegramBot.Helpers;
+using HomeTelegramBot.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -142,9 +143,14 @@ namespace HomeTelegramBot.Models
 
         private void HandleTextRequest(Message message)
         {
-            var someAction = "action";
+            var action = LanguageProcessor.GetActionFromMessage(message);
 
-            SendMessageToHandler(message, someAction);
+            if (action == null)
+            {
+                action = "PleaseRepeat";
+            }
+
+            SendMessageToHandler(message, action);
         }
 
         private async void SendMessageToHandler(Message message, string handlerName)
@@ -211,6 +217,8 @@ namespace HomeTelegramBot.Models
             await _bot.AnswerCallbackQueryAsync(callbackQueryEventArgs.CallbackQuery.Id,
                 $"Received {callbackQueryEventArgs.CallbackQuery.Data}");
         }
+
+      
 
         #endregion Bot events
 

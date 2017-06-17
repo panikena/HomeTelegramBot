@@ -220,7 +220,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Configurator.cs" />
-    <Compile Include="Helpers\LanguageProcessor.cs" />
+    <Compile Include="Helpers\StringExtentions.cs" />
     <Compile Include="Models\Bot.cs" />
     <Compile Include="Models\Weather\CurrentWeather.cs" />
     <Compile Include="Models\Weather\WeatherData.cs" />
@@ -232,6 +232,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\Interfaces\IWeatherService.cs" />
+    <Compile Include="Services\LanguageProcessor.cs" />
     <Compile Include="Services\WeatherService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -257,9 +258,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Log4Net.config" />
     <Content Include="Bot.config" />
     <Content Include="Web.config">

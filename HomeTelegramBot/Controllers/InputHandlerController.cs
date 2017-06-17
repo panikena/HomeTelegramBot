@@ -68,8 +68,23 @@ namespace HomeTelegramBot.Controllers
 
         public void Start([FromBody] Message message)
         {
-            _bot.SendTextMessageAsync(message.Chat.Id, Properties.Resources.InfoText + Configurator.BotVersion + "\n" + Properties.Resources.AvailableCommands);
+            _bot.SendTextMessageAsync(message.Chat.Id, string.Format(Properties.Resources.InfoText, message.Chat.FirstName) + Properties.Resources.MyVersionIs + " " + Configurator.BotVersion + "\n" + Properties.Resources.AvailableCommands);
         }
+
+        public void HowAreYou([FromBody] Message message)
+        {
+            _bot.SendTextMessageAsync(message.Chat.Id, Properties.Resources.IAmFine);
+        }
+        public void PleaseRepeat([FromBody] Message message)
+        {
+            _bot.SendTextMessageAsync(message.Chat.Id, Properties.Resources.PleaseRepeat);
+        }
+        public void Greeting([FromBody] Message message)
+        {
+            _bot.SendTextMessageAsync(message.Chat.Id, string.Format(Properties.Resources.InfoText, message.Chat.FirstName));
+        }
+
 
     }
 }
+
